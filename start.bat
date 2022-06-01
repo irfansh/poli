@@ -1,0 +1,1 @@
+java -jar target/poli-0.12.2.jar --spring.config.name=application,poli
