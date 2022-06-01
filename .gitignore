@@ -1,11 +1,15 @@
 .idea/
 *.iml
 target/
+.settings/
 .settings/org.eclipse.jdt.core.prefs
 .classpath
 .project
 log/
 jdbc-drivers/*
+config/
+db/
+
 
 # Ignore the files copied from web-app build
 src/main/resources/static
