@@ -8,7 +8,7 @@ target/
 log/
 jdbc-drivers/*
 config/
-db/
+db/*
 
 
 # Ignore the files copied from web-app build
