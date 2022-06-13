@@ -7,12 +7,13 @@ export const FILTER = 'filter';
 export const COMPONENT_TYPES = [STATIC, CHART, FILTER];
 
 export const SLICER = 'slicer';
-export const SINGLE_VALUE= 'single';
+export const SINGLE_VALUE = 'single';
 export const DATE_PICKER = 'date picker';
 export const FILTER_TYPES = [SLICER, SINGLE_VALUE, DATE_PICKER];
 
 export const PIE = 'pie';
 export const TABLE = 'table';
+export const RATINGTABLE = 'ratingtable';
 export const LINE = 'line';
 export const AREA = 'area';
 export const BAR = 'bar';
@@ -21,13 +22,17 @@ export const TREEMAP = 'treemap';
 export const FUNNEL = 'funnel';
 export const CARD = 'card';
 export const KANBAN = 'kanban';
-export const CHART_TYPES = [TABLE, PIE, LINE, BAR, AREA, CARD, FUNNEL, TREEMAP, HEATMAP, KANBAN];
+export const CHART_TYPES = [TABLE, RATINGTABLE, PIE, LINE, BAR, AREA, CARD, FUNNEL, TREEMAP, HEATMAP, KANBAN];
 
 export const IMAGE = 'image';
 export const TEXT = 'text';
 export const HTML = 'html';
 export const IFRAME = 'iframe';
 export const STATIC_TYPES = [TEXT, IMAGE, IFRAME, HTML];
+
+export const LIST = 'list';
+export const DROPDOWN = 'dropdown';
+export const SLICER_TYPES = [LIST, DROPDOWN];
 
 
 export const DEFAULT_FILTER_VIEW_WIDTH = 200;
@@ -52,6 +57,9 @@ export const ROMA = 'roma';
 export const MACARONS = 'macarons';
 export const SHINE = 'shine';
 export const CHART_COLOR_PLATETTES = [DEFAULT, VINTAGE, ROMA, MACARONS, SHINE];
+
+export const RATING_TABLE_STEP_SIZES = [10, 100, 500, 1000, 10000];
+export const STAR_COLOR_LIST = ["blue", "blueviolet", "brown", "crimson", "darkcyan", "darkgoldenrod", "darkorange", "green"];
 
 export const ADHOC = 'adhoc';
 export const CANNED = 'canned';

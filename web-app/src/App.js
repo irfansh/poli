@@ -3,7 +3,7 @@ import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import axios from 'axios';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { 
-  faChalkboard, faDatabase, faUsersCog, faPlus, faTimes,
+  faChalkboard, faDatabase, faUsersCog, faPlus, faTimes,faStar,
   faEdit, faTrashAlt, faPlayCircle, faStopCircle, faRedoAlt,
   faTv, faPlug, faUser, faSignOutAlt, faCompress, faExpandArrowsAlt,
   faFileExport,faFileImport, faFileCsv, faCircleNotch, faSearch, faSave, 
@@ -13,6 +13,9 @@ import {
   faAngleRight, faAngleDown, faFilePdf, faEllipsisH, faBolt, faAngleLeft, 
   faChevronRight, faChevronLeft
 } from '@fortawesome/free-solid-svg-icons';
+
+import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons'
+
 import {
   faSquare as farSquare,
   faHeart as farHeart
@@ -33,7 +36,7 @@ import * as Constants from './api/Constants';
 import * as Util from './api/Util';
 
 
-library.add(faChalkboard, faDatabase, faUsersCog, faPlus, faTimes, 
+library.add(faChalkboard, faDatabase, faUsersCog, faPlus, faTimes, faStar, farFaStar,
   faEdit, faTrashAlt, faPlayCircle, faStopCircle, faRedoAlt, 
   faTv, faPlug, faUser, faSignOutAlt, faCompress, faExpandArrowsAlt,
   faFileExport,faFileImport, faFileCsv, faCircleNotch, faSearch, faSave, 
