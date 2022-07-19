@@ -211,7 +211,7 @@ class Workspace extends React.Component {
       menuItems.push(
         (
           <div key={menu.link} className={`workspace-nav-menu-item ${active}`}>
-            <div className="workspace-nav-menu-item-value" onClick={() => this.handleMenuClick(menu)}>
+            <div className="workspace-nav-menu-item-value" onClick={() => this.handleMenuClick(menu)} >
               <FontAwesomeIcon icon={menu.icon} fixedWidth />
               <span className="workspace-nav-menu-text">{t(menu.value)}</span>
             </div>

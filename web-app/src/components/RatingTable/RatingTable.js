@@ -25,10 +25,9 @@ class RatingTable extends React.Component {
 		for (let key in itemObj) {
 			if (key === ratingColumn) {
 				let ratingIntValue = (parseInt(itemObj[key]) / ratingScale) * 100;
-				console.log(starColor);
 				let ratingValue = { "width": ratingIntValue + "%", "color": starColor};
 				ratingTD = (
-					<td>
+					<td key={"ratGrd-"+key}>
 						<div className="stars-outer">
 							<FontAwesomeIcon icon={["far", "star"]} />
 							<FontAwesomeIcon icon={["far", "star"]} />
@@ -46,7 +45,7 @@ class RatingTable extends React.Component {
 					</td>
 				);
 			}
-			cells.push(<td>{itemObj[key]}</td>);
+			cells.push(<td key={"rating-"+key}>{itemObj[key]}</td>);
 		}
 		cells.push(ratingTD);
 
@@ -86,15 +85,15 @@ class RatingTable extends React.Component {
 			<table className="Table">
 				<thead>
 					<tr>
-						{Object.keys(data[0]).map((key) => (
-							<th>{key}</th>
+						{Object.keys(data[0]).map((key, index) => (
+							<th key={index}>{key}</th>
 						))}
-						<th>Rating</th>
+						<th key="ratingKey">Rating</th>
 					</tr>
 				</thead>
 				<tbody>
-					{data.map(item => (
-						<tr>
+					{data.map((item,index) => (
+						<tr key={index}>
 							{this.calculateRating({ item }, ratingColumn, ratingScale, starColor)}
 						</tr>
 					))}

@@ -21,6 +21,7 @@ import SelectButtons from '../../components/SelectButtons/SelectButtons';
 import InputRange from '../../components/filters/InputRange';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import Checkbox from '../../components/Checkbox/Checkbox';
+import GaugeColorPicker from '../../components/GaugeColorPicker/GaugeColorPicker';
 
 const TABLE_DEFAULT_PAGE_SIZES = [5, 10, 20, 25, 50, 100];
 
@@ -220,7 +221,6 @@ class ComponentEditPanel extends React.Component {
 	handleComponentDataChange = (name, value) => {
 		const data = { ...this.state.data };
 		data[[name]] = value;
-		console.log(data);
 		this.setState({
 			data: data
 		});
@@ -508,6 +508,28 @@ class ComponentEditPanel extends React.Component {
 			</div>
 		);
 
+		const {
+			markline,
+			marklineColor,
+		} = data;
+
+		const markLinePanel = (
+			<div>
+				<label>{t('Markline')}</label>
+				<div style={{ marginBottom: '8px' }}>
+					<input
+						className="form-input"
+						type="text"
+						value={markline}
+						onChange={(event) => this.handleComponentDataChange('markline', event.target.value)}
+					/>
+				</div>
+
+				<label>{t('Markline Color')}</label>
+				<ColorPicker name={'marklineColor'} value={marklineColor} onChange={this.handleComponentDataChange} />
+			</div>
+		);
+		
 		let chartConfigPanel;
 		if (subType === Constants.TABLE || subType === Constants.RATINGTABLE) {
 			const {
@@ -554,7 +576,7 @@ class ComponentEditPanel extends React.Component {
 								onChange={this.handleComponentDataChange}
 								options={Constants.RATING_TABLE_STEP_SIZES}
 							/>
-							
+
 							<label>{t('Star Color')}</label>
 							<Select
 								name={'starColor'}
@@ -625,7 +647,7 @@ class ComponentEditPanel extends React.Component {
 					<div style={{ marginBottom: '8px' }}>
 						<Checkbox name="showAllAxisLabels" value="" checked={showAllAxisLabels} onChange={this.handleComponentDataChange} />
 					</div>
-
+					{markLinePanel}
 					{colorPlattePanel}
 					{gridPanel}
 				</div>
@@ -660,7 +682,7 @@ class ComponentEditPanel extends React.Component {
 					<div style={{ marginBottom: '8px' }}>
 						<Checkbox name="showAllAxisLabels" value="" checked={showAllAxisLabels} onChange={this.handleComponentDataChange} />
 					</div>
-
+					{markLinePanel}
 					{colorPlattePanel}
 					{gridPanel}
 				</div>
@@ -811,6 +833,33 @@ class ComponentEditPanel extends React.Component {
 						optionDisplay={'name'}
 						optionValue={'name'}
 					/>
+				</div>
+			);
+		} else if (subType === Constants.GAUGE) {
+			const {
+				gaugeValue = '',
+				maxValue = ''
+			} = data;
+			chartConfigPanel = (
+				<div className="form-panel">
+					<label>{t('Value')}</label>
+					<Select
+						name={'gaugeValue'}
+						value={gaugeValue}
+						onChange={this.handleComponentDataChange}
+						options={columns}
+						optionDisplay={'name'}
+						optionValue={'name'}
+					/>
+					
+					<label>{t('Max Value')}</label>
+					<input
+						className="form-input"
+						type="text"
+						value={maxValue}
+						onChange={(event) => this.handleComponentDataChange('maxValue', event.target.value)}
+					/>
+					<GaugeColorPicker/>
 				</div>
 			);
 		} else {

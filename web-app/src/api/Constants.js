@@ -13,6 +13,7 @@ export const FILTER_TYPES = [SLICER, SINGLE_VALUE, DATE_PICKER];
 
 export const PIE = 'pie';
 export const TABLE = 'table';
+export const GAUGE = 'gauge';
 export const RATINGTABLE = 'ratingtable';
 export const LINE = 'line';
 export const AREA = 'area';
@@ -22,7 +23,7 @@ export const TREEMAP = 'treemap';
 export const FUNNEL = 'funnel';
 export const CARD = 'card';
 export const KANBAN = 'kanban';
-export const CHART_TYPES = [TABLE, RATINGTABLE, PIE, LINE, BAR, AREA, CARD, FUNNEL, TREEMAP, HEATMAP, KANBAN];
+export const CHART_TYPES = [TABLE, RATINGTABLE, PIE, GAUGE, LINE, BAR, AREA, CARD, FUNNEL, TREEMAP, HEATMAP, KANBAN];
 
 export const IMAGE = 'image';
 export const TEXT = 'text';
