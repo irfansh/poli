@@ -838,7 +838,8 @@ class ComponentEditPanel extends React.Component {
 		} else if (subType === Constants.GAUGE) {
 			const {
 				gaugeValue = '',
-				maxValue = ''
+				maxValue = '',
+				gaugeColor = '',
 			} = data;
 			chartConfigPanel = (
 				<div className="form-panel">
@@ -859,7 +860,8 @@ class ComponentEditPanel extends React.Component {
 						value={maxValue}
 						onChange={(event) => this.handleComponentDataChange('maxValue', event.target.value)}
 					/>
-					<GaugeColorPicker/>
+					<label>{t('Gauge Color')}</label>
+					<GaugeColorPicker name={'gaugeColor'} value={gaugeColor} onChange={this.handleComponentDataChange}/>
 				</div>
 			);
 		} else {

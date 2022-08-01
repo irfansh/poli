@@ -1,0 +1,10 @@
+.gclrPlt{
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+	margin-top: 5px;
+}
+
+.percentage{
+	width: 75px;
+}

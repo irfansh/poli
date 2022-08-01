@@ -538,6 +538,9 @@ const getGaugeOption = (data, config) => {
 	const {
 		gaugeValue,
 		maxValue = 100,
+		gaugeColor = [
+			[1, 'green']
+		]
 	} = config;
 
 	const gaugeData = [];
@@ -555,11 +558,7 @@ const getGaugeOption = (data, config) => {
 			axisLine: {
 				lineStyle: {
 					width: 20,
-					color: [
-						[0.3, 'red'],
-						[0.7, 'green'],
-						[1, 'blue']
-					]
+					color: gaugeColor
 				}
 			},
 			pointer: {
