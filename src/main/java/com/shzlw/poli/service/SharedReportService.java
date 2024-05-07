@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +48,21 @@ public class SharedReportService {
     @Autowired
     ComponentDao componentDao;
 
+    public SharedLinkInfo getSharedLinkInfoByReportId(long reportId) {
+    	List<SharedReport> sharedReports = sharedReportDao.findByReportId(reportId);
+    	SharedReport sharedReport = sharedReports.stream().filter(rep -> rep.getExpiredBy() > getTodayDateInLong()).findFirst().orElse(null);
+        List<Component> components = componentDao.findByReportId(reportId);
+        Set<String> componentQueryUrls = new HashSet<>();
+        for (Component component : components) {
+            componentQueryUrls.add("/ws/jdbcquery/component/" + component.getId());
+        }
+        User u = userDao.findByShareKey(sharedReport.getShareKey());
+        u.setUserAttributes(userDao.findUserAttributes(u.getId()));
+
+        return new SharedLinkInfo(u, reportId, componentQueryUrls);
+    	
+    }
+    
     public SharedLinkInfo getSharedLinkInfoByShareKey(String shareKey) {
         if (StringUtils.isEmpty(shareKey)) {
             return null;
@@ -95,4 +113,10 @@ public class SharedReportService {
             }
         }
     }
+    
+   private long getTodayDateInLong() {
+	   LocalDateTime localDateTime = LocalDateTime.now();
+       ZonedDateTime zdt = ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
+       return zdt.toInstant().toEpochMilli();
+   } 
 }

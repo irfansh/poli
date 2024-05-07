@@ -118,7 +118,6 @@ public class JdbcQueryService {
                 npjt.execute(parsedSql, (ps) -> ps.execute());
             }
         }
-
         String parsedSql = JdbcQueryServiceHelper.parseSqlStatementWithParams(sqls.get(preQueryNumber), namedParameters);
         return executeQuery(npjt, parsedSql, namedParameters, resultLimit);
     }

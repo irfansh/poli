@@ -73,7 +73,6 @@ class ReportEditView extends React.Component {
 			const { ownerDocument } = thisNode;
 			ownerDocument.addEventListener("keydown", this.onKeyDown);
 		}
-
 		const id = this.props.match.params.id;
 		if (id === undefined) {
 			// If the drill through is triggered from the full-report page already, this component is remounted but not FullScreenView.
@@ -147,6 +146,7 @@ class ReportEditView extends React.Component {
 			lastRefreshLabelTimerId: lastRefreshLabelTimerId
 		})
 	}
+
 
 	componentWillUnmount() {
 		const {
@@ -370,6 +370,12 @@ class ReportEditView extends React.Component {
 		});
 	}
 
+	openExistingComponentPanel = () => {
+		this.setState({
+			showExistingComponentPanel: true
+		});
+	}
+
 	applyFilters = () => {
 		const {
 			reportType
@@ -410,6 +416,7 @@ class ReportEditView extends React.Component {
 				}
 			});
 	}
+
 
 	exportToPdf = () => {
 		const {
@@ -592,6 +599,7 @@ class ReportEditView extends React.Component {
 			};
 			urlFilterParams.push(filterParam);
 		}
+		
 		return urlFilterParams;
 	}
 
@@ -715,10 +723,14 @@ class ReportEditView extends React.Component {
 			reportType,
 			isPendingApplyFilters,
 			isFavourite,
-			isExporting
+			isExporting,
+			reportId
 		} = this.state;
+
 		const autoRefreshStatus = autoRefreshTimerId === '' ? 'OFF' : 'ON';
 		const pendingApplyFiltersStyle = isPendingApplyFilters ? 'font-blue' : '';
+
+		const reportList = [];
 
 		const commonButtonPanel = (
 			<React.Fragment>
@@ -824,7 +836,7 @@ class ReportEditView extends React.Component {
 					<div className="float-left">
 						{fromReport && (
 							<div className="report-drillthrough-name" onClick={this.goBackToFromReport}>
-								<span className="link-label">{fromReport}</span> >
+								<span className="link-label">{fromReport}</span>
 							</div>
 						)}
 					</div>
@@ -877,6 +889,23 @@ class ReportEditView extends React.Component {
 						reportId={this.state.reportId}
 						onSave={this.onComponentSave}
 					/>
+				</Modal>
+
+				<Modal
+					show={this.state.showExistingComponentPanel}
+					onClose={() => this.setState({ showExistingComponentPanel: false })}
+					modalClass={'small-modal-panel'}
+					title={t('Existing Reports')}>
+					<div>
+						<label>Reports {this.state.reportId}</label>
+						<select
+							name={'reportId123'}
+							value={reportId}
+							onChange={this.handleOptionChange}
+						>
+							{reportList}
+						</select>
+					</div>
 				</Modal>
 
 				<Modal

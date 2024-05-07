@@ -45,7 +45,7 @@ public class UserService {
         try {
             User user = SESSION_USER_CACHE.get(sessionKey, () -> {
                 User u = userDao.findBySessionKey(sessionKey);
-                u.setUserAttributes(userDao.findUserAttributes(u.getId()));
+                //u.setUserAttributes(userDao.findUserAttributes(u.getId()));
                 return u;
             });
             return user;
